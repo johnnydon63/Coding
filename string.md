@@ -242,25 +242,30 @@ Output: [2,3]
 
 主要思想是通过交换数组元素，使得数组上的元素在正确的位置上。
 
-```java
-public int[] findErrorNums(int[] nums) {
-    for (int i = 0; i < nums.length; i++) {
-        while (nums[i] != i + 1 && nums[nums[i] - 1] != nums[i]) {
-            swap(nums, i, nums[i] - 1);
+```c
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* findErrorNums(int* nums, int numsSize, int* returnSize) {
+    int* mark = malloc(numsSize * sizeof(int));
+    int* out = malloc(2 * sizeof(int));
+    memset(mark, 0, numsSize * sizeof(int));
+    for(int i = 0; i < numsSize; i++) {
+        if(mark[nums[i] - 1] == 0) {
+            mark[nums[i] - 1] = 1;
+        }
+        else {
+            out[0] = nums[i];
         }
     }
-    for (int i = 0; i < nums.length; i++) {
-        if (nums[i] != i + 1) {
-            return new int[]{nums[i], i + 1};
+    for(int i = 0; i < numsSize; i++) {
+        if(mark[i] == 0) {
+            out[1] = i + 1;
         }
     }
-    return null;
-}
-
-private void swap(int[] nums, int i, int j) {
-    int tmp = nums[i];
-    nums[i] = nums[j];
-    nums[j] = tmp;
+    *returnSize = 2;
+    free(mark);
+    return out;
 }
 ```
 

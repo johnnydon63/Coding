@@ -13,6 +13,7 @@
     * [10. 对角元素相等的矩阵](#10-对角元素相等的矩阵)
     * [11. 嵌套数组](#11-嵌套数组)
     * [12. 分隔数组](#12-分隔数组)
+    * [13. tbd](#13-tbd)
 <!-- GFM-TOC -->
 
 
@@ -356,31 +357,33 @@ Output: 6
 
 题目描述：数组的度定义为元素出现的最高频率，例如上面的数组度为 3。要求找到一个最小的子数组，这个子数组的度和原数组一样。
 
-```java
-public int findShortestSubArray(int[] nums) {
-    Map<Integer, Integer> numsCnt = new HashMap<>();
-    Map<Integer, Integer> numsLastIndex = new HashMap<>();
-    Map<Integer, Integer> numsFirstIndex = new HashMap<>();
-    for (int i = 0; i < nums.length; i++) {
-        int num = nums[i];
-        numsCnt.put(num, numsCnt.getOrDefault(num, 0) + 1);
-        numsLastIndex.put(num, i);
-        if (!numsFirstIndex.containsKey(num)) {
-            numsFirstIndex.put(num, i);
+```c
+int findShortestSubArray(int* nums, int numsSize) {
+    int freq[50000], degree[50000], start_pos[50000];
+    int max_freq = 0, out = 50000;
+    memset(freq, 0, sizeof(freq));
+    memset(degree, 0, sizeof(degree));
+    memset(start_pos, -1, sizeof(degree));
+    
+    for(int i = 0; i < numsSize; i++) {
+        freq[nums[i]]++;
+        if(start_pos[nums[i]] == -1) {
+            start_pos[nums[i]] = i;
+            degree[nums[i]] = 1;
+        }
+        else
+            degree[nums[i]] = i - start_pos[nums[i]] + 1;
+    }
+    for(int i = 0; i < 50000; i++) {
+        if(freq[i] > max_freq)
+            max_freq = freq[i];
+    }
+    for(int i = 0; i < 50000; i++) {
+        if(freq[i] == max_freq && degree[i] < out) {
+            out = degree[i];
         }
     }
-    int maxCnt = 0;
-    for (int num : nums) {
-        maxCnt = Math.max(maxCnt, numsCnt.get(num));
-    }
-    int ret = nums.length;
-    for (int i = 0; i < nums.length; i++) {
-        int num = nums[i];
-        int cnt = numsCnt.get(num);
-        if (cnt != maxCnt) continue;
-        ret = Math.min(ret, numsLastIndex.get(num) - numsFirstIndex.get(num) + 1);
-    }
-    return ret;
+    return out;
 }
 ```
 
@@ -487,4 +490,24 @@ public int maxChunksToSorted(int[] arr) {
     }
     return ret;
 }
+```
+
+## 13. tbd
+
+769\. Max Chunks To Make Sorted (Medium)
+
+[Leetcode](https://leetcode.com/problems/max-chunks-to-make-sorted/description/) / [力扣](https://leetcode-cn.com/problems/max-chunks-to-make-sorted/description/)
+
+```html
+Input: arr = [1,0,2,3,4]
+Output: 4
+Explanation:
+We can split into two chunks, such as [1, 0], [2, 3, 4].
+However, splitting into [1, 0], [2], [3], [4] is the highest number of chunks possible.
+```
+
+题目描述：分隔数组，使得对每部分排序后数组就为有序。
+
+```c
+tbd
 ```

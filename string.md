@@ -176,51 +176,14 @@ return 13.
 
 二分查找解法：
 
-```java
-public int kthSmallest(int[][] matrix, int k) {
-    int m = matrix.length, n = matrix[0].length;
-    int lo = matrix[0][0], hi = matrix[m - 1][n - 1];
-    while (lo <= hi) {
-        int mid = lo + (hi - lo) / 2;
-        int cnt = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n && matrix[i][j] <= mid; j++) {
-                cnt++;
-            }
-        }
-        if (cnt < k) lo = mid + 1;
-        else hi = mid - 1;
-    }
-    return lo;
-}
+```c
+tbd
 ```
 
 堆解法：
 
-```java
-public int kthSmallest(int[][] matrix, int k) {
-    int m = matrix.length, n = matrix[0].length;
-    PriorityQueue<Tuple> pq = new PriorityQueue<Tuple>();
-    for(int j = 0; j < n; j++) pq.offer(new Tuple(0, j, matrix[0][j]));
-    for(int i = 0; i < k - 1; i++) { // 小根堆，去掉 k - 1 个堆顶元素，此时堆顶元素就是第 k 的数
-        Tuple t = pq.poll();
-        if(t.x == m - 1) continue;
-        pq.offer(new Tuple(t.x + 1, t.y, matrix[t.x + 1][t.y]));
-    }
-    return pq.poll().val;
-}
-
-class Tuple implements Comparable<Tuple> {
-    int x, y, val;
-    public Tuple(int x, int y, int val) {
-        this.x = x; this.y = y; this.val = val;
-    }
-
-    @Override
-    public int compareTo(Tuple that) {
-        return this.val - that.val;
-    }
-}
+```tbd
+tbd
 ```
 
 ## 6. 一个数组元素在 [1, n] 之间，其中一个数被替换为另一个数，找出重复的数和丢失的数
@@ -330,18 +293,8 @@ Explanation: The [1, 3, 2] has three different positive integers ranging from 1 
 
 让前 k+1 个元素构建出 k 个不相同的差值，序列为：1 k+1 2 k 3 k-1 ... k/2 k/2+1.
 
-```java
-public int[] constructArray(int n, int k) {
-    int[] ret = new int[n];
-    ret[0] = 1;
-    for (int i = 1, interval = k; i <= k; i++, interval--) {
-        ret[i] = i % 2 == 1 ? ret[i - 1] + interval : ret[i - 1] - interval;
-    }
-    for (int i = k + 1; i < n; i++) {
-        ret[i] = i + 1;
-    }
-    return ret;
-}
+```c
+tbd
 ```
 
 ## 9. 数组的度

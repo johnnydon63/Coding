@@ -354,29 +354,17 @@ int findShortestSubArray(int* nums, int numsSize) {
 In the above grid, the diagonals are "[9]", "[5, 5]", "[1, 1, 1]", "[2, 2, 2]", "[3, 3]", "[4]", and in each diagonal all elements are the same, so the answer is True.
 ```
 
-```java
-public boolean isToeplitzMatrix(int[][] matrix) {
-    for (int i = 0; i < matrix[0].length; i++) {
-        if (!check(matrix, matrix[0][i], 0, i)) {
-            return false;
-        }
-    }
-    for (int i = 0; i < matrix.length; i++) {
-        if (!check(matrix, matrix[i][0], i, 0)) {
-            return false;
+```c
+bool isToeplitzMatrix(int** matrix, int matrixSize, int* matrixColSize) {
+    //int r = 0, c = 0;
+    for(int r = 0; r < matrixSize; r++) {
+        for(int c = 0; c < matrixColSize[r]; c++) {
+            if(r + 1 < matrixSize && c + 1 < matrixColSize[r + 1])
+                if(matrix[r][c] != matrix[r + 1][c + 1])
+                    return false;
         }
     }
     return true;
-}
-
-private boolean check(int[][] matrix, int expectValue, int row, int col) {
-    if (row >= matrix.length || col >= matrix[0].length) {
-        return true;
-    }
-    if (matrix[row][col] != expectValue) {
-        return false;
-    }
-    return check(matrix, expectValue, row + 1, col + 1);
 }
 ```
 

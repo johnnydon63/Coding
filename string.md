@@ -297,15 +297,15 @@ public int findDuplicate(int[] nums) {
 
 双指针解法，类似于有环链表中找出环的入口：
 
-```java
-public int findDuplicate(int[] nums) {
+```c
+int findDuplicate(int* nums, int numsSize) {
     int slow = nums[0], fast = nums[nums[0]];
-    while (slow != fast) {
+    while(slow != fast) {
         slow = nums[slow];
         fast = nums[nums[fast]];
     }
     fast = 0;
-    while (slow != fast) {
+    while(slow != fast) {
         slow = nums[slow];
         fast = nums[fast];
     }

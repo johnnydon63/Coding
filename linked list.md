@@ -97,7 +97,31 @@ public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
     }
 }
 ```
-
+```c
+struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
+    struct ListNode *head = NULL, *iter = NULL;
+    head = malloc(sizeof(struct ListNode));
+    iter = head;
+    while(list1 && list2) {
+        if(list1->val <= list2->val) {
+            iter->next = list1;
+            list1 = list1->next;
+        }
+        else {
+            iter->next = list2;
+            list2 = list2->next;
+        }
+        iter = iter->next;
+    }
+    if(list1 == NULL) 
+        iter->next = list2;
+    else
+        iter->next = list1;
+    iter = head->next;
+    free(head);
+    return iter;
+}
+```
 ##  4. 从有序链表中删除重复节点
 
 83\. Remove Duplicates from Sorted List (Easy)
@@ -116,7 +140,23 @@ public ListNode deleteDuplicates(ListNode head) {
     return head.val == head.next.val ? head.next : head;
 }
 ```
-
+```c
+struct ListNode* deleteDuplicates(struct ListNode* head) {
+    struct ListNode* out = head, *dup = NULL;
+    if(!head)
+        return head;
+    while(head != NULL && head->next != NULL) {
+        if(head->val == head->next->val) {
+            dup = head->next;
+            head->next = head->next->next;
+            free(dup);
+        }
+        else
+            head = head->next;
+    }
+    return out;
+}
+```
 ##  5. 删除链表的倒数第 n 个节点
 
 19\. Remove Nth Node From End of List (Medium)

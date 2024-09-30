@@ -63,18 +63,18 @@ public ListNode reverseList(ListNode head) {
 }
 ```
 
-头插法
 
-```java
-public ListNode reverseList(ListNode head) {
-    ListNode newHead = new ListNode(-1);
-    while (head != null) {
-        ListNode next = head.next;
-        head.next = newHead.next;
-        newHead.next = head;
-        head = next;
+
+```c
+struct ListNode* reverseList(struct ListNode* head) {
+    struct ListNode *pre = NULL, *cur = head, *nex = head;
+    while(nex != NULL) {
+        nex = cur->next;
+        cur->next = pre;
+        pre = cur;
+        cur = nex;
     }
-    return newHead.next;
+    return pre;
 }
 ```
 

@@ -168,20 +168,25 @@ Given linked list: 1->2->3->4->5, and n = 2.
 After removing the second node from the end, the linked list becomes 1->2->3->5.
 ```
 
-```java
-public ListNode removeNthFromEnd(ListNode head, int n) {
-    ListNode fast = head;
-    while (n-- > 0) {
-        fast = fast.next;
+```c
+struct ListNode* removeNthFromEnd(struct ListNode* head, int n) {
+    struct ListNode pre;
+    pre.next = head;
+    struct ListNode *slow = &pre, *fast = &pre, *tmp = NULL;
+    
+    for(int i = 0; i <= n; i++) {
+        if(fast == NULL)
+            return NULL;
+        fast = fast->next;
     }
-    if (fast == null) return head.next;
-    ListNode slow = head;
-    while (fast.next != null) {
-        fast = fast.next;
-        slow = slow.next;
+    while(fast) {
+        slow = slow->next;
+        fast = fast->next;
     }
-    slow.next = slow.next.next;
-    return head;
+    tmp = slow->next;
+    slow->next = tmp->next;
+    free(tmp);
+    return pre.next;
 }
 ```
 

@@ -233,31 +233,53 @@ Output: 7 -> 8 -> 0 -> 7
 
 题目要求：不能修改原始链表。
 
-```java
-public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-    Stack<Integer> l1Stack = buildStack(l1);
-    Stack<Integer> l2Stack = buildStack(l2);
-    ListNode head = new ListNode(-1);
-    int carry = 0;
-    while (!l1Stack.isEmpty() || !l2Stack.isEmpty() || carry != 0) {
-        int x = l1Stack.isEmpty() ? 0 : l1Stack.pop();
-        int y = l2Stack.isEmpty() ? 0 : l2Stack.pop();
-        int sum = x + y + carry;
-        ListNode node = new ListNode(sum % 10);
-        node.next = head.next;
-        head.next = node;
-        carry = sum / 10;
+```c
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+struct ListNode* reverse(struct ListNode* head) {
+    struct ListNode *pre = NULL, *cur = head, *nex = head;
+    while(cur) {
+        nex = cur->next;
+        cur->next = pre;
+        pre = cur;
+        cur = nex;
     }
-    return head.next;
+    return pre;
 }
-
-private Stack<Integer> buildStack(ListNode l) {
-    Stack<Integer> stack = new Stack<>();
-    while (l != null) {
-        stack.push(l.val);
-        l = l.next;
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
+    int carry = 0, val = 0, v1 = 0, v2 = 0;
+    struct ListNode* pre_tail = NULL;
+    l1 = reverse(l1);
+    l2 = reverse(l2);
+    while(l1 || l2 || carry == 1) {
+        struct ListNode* n = malloc(sizeof(struct ListNode));
+        v1 = l1 == NULL ? 0 : l1->val;
+        v2 = l2 == NULL ? 0 : l2->val;
+        if(l1){
+            v1 = l1->val;
+            l1 = l1->next;
+        }
+        else {
+            v1 = 0;
+        }
+        if(l2){
+            v2 = l2->val;
+            l2 = l2->next;
+        }
+        else {
+            v2 = 0;
+        }
+        n->val = (v1 + v2 + carry) % 10;
+        carry = (v1 + v2 + carry) / 10;
+        n->next = pre_tail;
+        pre_tail = n;
     }
-    return stack;
+    return pre_tail;
 }
 ```
 

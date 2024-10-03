@@ -347,29 +347,31 @@ The input has been split into consecutive parts with size difference at most 1, 
 
 题目描述：把链表分隔成 k 部分，每部分的长度都应该尽可能相同，排在前面的长度应该大于等于后面的。
 
-```java
-public ListNode[] splitListToParts(ListNode root, int k) {
-    int N = 0;
-    ListNode cur = root;
-    while (cur != null) {
-        N++;
-        cur = cur.next;
-    }
-    int mod = N % k;
-    int size = N / k;
-    ListNode[] ret = new ListNode[k];
-    cur = root;
-    for (int i = 0; cur != null && i < k; i++) {
-        ret[i] = cur;
-        int curSize = size + (mod-- > 0 ? 1 : 0);
-        for (int j = 0; j < curSize - 1; j++) {
-            cur = cur.next;
+```c
+int ListLen(struct ListNode* head) {
+    if(head == NULL) 
+        return 0;
+    return 1 + ListLen(head->next);
+}
+struct ListNode** splitListToParts(struct ListNode* head, int k, int* returnSize) {
+    int len = ListLen(head);
+    struct ListNode** out = malloc(sizeof(struct ListNode*) * k);
+    struct ListNode* tmp = NULL;
+    *returnSize = k;
+    int m = len / k, r = len % k, ext = 0;
+    for(int i = 0; i < k; i++) {
+        out[i] = head;
+        ext = i < r ? 1 : 0;
+        for(int j = 1; j < m + ext; j++) {
+            head = head->next;
         }
-        ListNode next = cur.next;
-        cur.next = null;
-        cur = next;
+        if(head == NULL)
+            continue;
+        tmp = head->next;
+        head->next = NULL;
+        head = tmp;
     }
-    return ret;
+    return out;
 }
 ```
 

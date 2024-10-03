@@ -202,21 +202,30 @@ Given 1->2->3->4, you should return the list as 2->1->4->3.
 
 题目要求：不能修改结点的 val 值，O(1) 空间复杂度。
 
-```java
-public ListNode swapPairs(ListNode head) {
-    ListNode node = new ListNode(-1);
-    node.next = head;
-    ListNode pre = node;
-    while (pre.next != null && pre.next.next != null) {
-        ListNode l1 = pre.next, l2 = pre.next.next;
-        ListNode next = l2.next;
-        l1.next = next;
-        l2.next = l1;
-        pre.next = l2;
-
-        pre = l1;
+```c
+struct ListNode* swapPairs(struct ListNode* head) {
+    struct ListNode dummy;
+    dummy.next = head;
+    struct ListNode *pre = &dummy, *nex = head, *n1 = NULL, *n2 = NULL;
+    if(nex == NULL || nex->next == NULL)
+        return head;
+    else
+        nex = nex->next->next;
+    while(nex && nex->next) {
+        n1 = pre->next;
+        n2 = n1->next;
+        pre->next = n2;
+        n2->next = n1;
+        n1->next = nex;
+        pre = n1;
+        nex = nex->next->next;
     }
-    return node.next;
+    n1 = pre->next;
+    n2 = n1->next;
+    pre->next = n2;
+    n2->next = n1;
+    n1->next = nex;
+    return dummy.next;
 }
 ```
 

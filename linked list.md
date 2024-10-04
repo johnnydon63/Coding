@@ -1,7 +1,7 @@
 # 链表
 
 <!-- GFM-TOC -->
-* [链表是空节点，或者有一个值和一个指向下一个链表的指针，因此很多链表问题可以用递归来处理。](#leetcode-题解---链表)
+* 很多链表问题可以用递归来处理
     * [1. 160 找出两个链表的交点 ](#1-找出两个链表的交点) Intersection of Two Linked Lists (Easy) [Leetcode](https://leetcode.com/problems/intersection-of-two-linked-lists/description/)
     * [2. 206 链表反转 ](#2-链表反转) Reverse Linked List (Easy) [Leetcode](https://leetcode.com/problems/reverse-linked-list/description/) 
     * [3. 21 归并两个有序的链表 ](#3-归并两个有序的链表) Merge Two Sorted Lists (Easy)  [Leetcode](https://leetcode.com/problems/merge-two-sorted-lists/description/) 

@@ -387,19 +387,31 @@ Given 1->2->3->4->5->NULL,
 return 1->3->5->2->4->NULL.
 ```
 
-```java
-public ListNode oddEvenList(ListNode head) {
-    if (head == null) {
+```c
+struct ListNode* oddEvenList(struct ListNode* head) {
+    struct ListNode *odd = head, *even = head;
+    if(head == NULL || head->next == NULL)
         return head;
+    struct ListNode odd_h, even_h;
+    odd = &odd_h;
+    even = &even_h;
+    for(int i = 1; head != NULL; i++) {
+        if(i % 2 == 1) {
+            odd->next = head;
+            odd = odd->next;
+        }
+        else {
+            even->next = head;
+            even = even->next;
+        }
+        head = head->next;
     }
-    ListNode odd = head, even = head.next, evenHead = even;
-    while (even != null && even.next != null) {
-        odd.next = odd.next.next;
-        odd = odd.next;
-        even.next = even.next.next;
-        even = even.next;
-    }
-    odd.next = evenHead;
-    return head;
+    odd->next = NULL;
+    even->next = NULL;
+    head = odd_h.next;
+    while(head->next != NULL)
+        head = head->next;
+    head->next = even_h.next;
+    return odd_h.next;
 }
 ```

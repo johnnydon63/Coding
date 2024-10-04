@@ -11,6 +11,7 @@
     * [8. 回文链表](#8-回文链表)
     * [9. 分隔链表](#9-分隔链表)
     * [10. 链表元素按奇偶聚集](#10-链表元素按奇偶聚集)
+    * [11. tbd](#11-tbd)
 <!-- GFM-TOC -->
 
 
@@ -414,4 +415,13 @@ struct ListNode* oddEvenList(struct ListNode* head) {
     head->next = even_h.next;
     return odd_h.next;
 }
+```
+##  11. tbd
+
+328\. Odd Even Linked List (Medium)
+
+[Leetcode](https://leetcode.com/problems/odd-even-linked-list/description/) / [力扣](https://leetcode-cn.com/problems/odd-even-linked-list/description/)
+
+```c
+tbd
 ```

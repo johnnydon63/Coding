@@ -2,71 +2,30 @@
 
 <!-- GFM-TOC -->
 * [链表是空节点，或者有一个值和一个指向下一个链表的指针，因此很多链表问题可以用递归来处理。](#leetcode-题解---链表)
-    * [1. 160 找出两个链表的交点 ](#1-找出两个链表的交点)
-      
-         160\. Intersection of Two Linked Lists (Easy) [Leetcode](https://leetcode.com/problems/intersection-of-two-linked-lists/description/)
-    * [2. 206 链表反转 ](#2-链表反转)
- 
-         206\. Reverse Linked List (Easy) [Leetcode](https://leetcode.com/problems/reverse-linked-list/description/) 
-    * [3. 21 归并两个有序的链表 ](#3-归并两个有序的链表)
- 
-         21\. Merge Two Sorted Lists (Easy)  [Leetcode](https://leetcode.com/problems/merge-two-sorted-lists/description/) 
-    * [4. 83 从有序链表中删除重复节点 ](#4-从有序链表中删除重复节点)
- 
-      83\. Remove Duplicates from Sorted List (Easy) [Leetcode](https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/)
-      ```html
-      Given 1->1->2, return 1->2.
-      Given 1->1->2->3->3, return 1->2->3.
-      ```
-
-    * [5. 19 删除链表的倒数第 n 个节点 ](#5-删除链表的倒数第-n-个节点)
- 
-      19\. Remove Nth Node From End of List (Medium) [Leetcode](https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/)
-      ```html
-      Given linked list: 1->2->3->4->5, and n = 2.
-      After removing the second node from the end, the linked list becomes 1->2->3->5.
-      ```
-    * [6. 24 交换链表中的相邻结点 ](#6-交换链表中的相邻结点)
- 
-      24\. Swap Nodes in Pairs (Medium) [Leetcode](https://leetcode.com/problems/swap-nodes-in-pairs/description/)
-
-      ```html
-      Given 1->2->3->4, you should return the list as 2->1->4->3.
-      ```
-      题目要求：不能修改结点的 val 值，O(1) 空间复杂度。
-    * [7. 445 链表求和 ](#7-链表求和)
- 
-      445\. Add Two Numbers II (Medium)[Leetcode](https://leetcode.com/problems/add-two-numbers-ii/description/)
-      ```html
-      Input: (7 -> 2 -> 4 -> 3) + (5 -> 6 -> 4)
-      Output: 7 -> 8 -> 0 -> 7
-      ```
-      题目要求：不能修改原始链表。
-    * [8. 234 回文链表 ](#8-回文链表)
- 
-      234\. Palindrome Linked List (Easy) [Leetcode](https://leetcode.com/problems/palindrome-linked-list/description/)
-      题目要求：以 O(1) 的空间复杂度来求解。
-    * [9. 725 分隔链表 ](#9-分隔链表)
- 
-      725\. Split Linked List in Parts(Medium) [Leetcode](https://leetcode.com/problems/split-linked-list-in-parts/description/) 
+    * [1. 160 找出两个链表的交点 ](#1-找出两个链表的交点) Intersection of Two Linked Lists (Easy) [Leetcode](https://leetcode.com/problems/intersection-of-two-linked-lists/description/)
+    * [2. 206 链表反转 ](#2-链表反转) Reverse Linked List (Easy) [Leetcode](https://leetcode.com/problems/reverse-linked-list/description/) 
+    * [3. 21 归并两个有序的链表 ](#3-归并两个有序的链表) Merge Two Sorted Lists (Easy)  [Leetcode](https://leetcode.com/problems/merge-two-sorted-lists/description/) 
+    * [4. 83 从有序链表中删除重复节点 ](#4-从有序链表中删除重复节点) Remove Duplicates from Sorted List (Easy) [Leetcode](https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/)
+    * [5. 19 删除链表的倒数第 n 个节点 ](#5-删除链表的倒数第-n-个节点) Remove Nth Node From End of List (Medium) [Leetcode](https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/)
+    * [6. 24 交换链表中的相邻结点 ](#6-交换链表中的相邻结点) Swap Nodes in Pairs (Medium) [Leetcode](https://leetcode.com/problems/swap-nodes-in-pairs/description/)
+    * [7. 445 链表求和 ](#7-链表求和) Add Two Numbers II (Medium)[Leetcode](https://leetcode.com/problems/add-two-numbers-ii/description/)
+    * [8. 234 回文链表 ](#8-回文链表) Palindrome Linked List (Easy) [Leetcode](https://leetcode.com/problems/palindrome-linked-list/description/)
+    * [9. 725 分隔链表 ](#9-分隔链表) Split Linked List in Parts(Medium) [Leetcode](https://leetcode.com/problems/split-linked-list-in-parts/description/) 
       ```html
       Input:
       root = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], k = 3
       Output: [[1, 2, 3, 4], [5, 6, 7], [8, 9, 10]]
       Explanation:
-      The input has been split into consecutive parts with size difference at most 1, and earlier parts are a larger size than the later parts.
+      The input has been split into consecutive parts with size difference at most 1,
+      and earlier parts are a larger size than the later parts.
       ```
-    * [10. 328 链表元素按奇偶聚集 ](#10-链表元素按奇偶聚集)
-
-      328\. Odd Even Linked List (Medium) [Leetcode](https://leetcode.com/problems/odd-even-linked-list/description/)
+    * [10. 328 链表元素按奇偶聚集 ](#10-链表元素按奇偶聚集) Odd Even Linked List (Medium) [Leetcode](https://leetcode.com/problems/odd-even-linked-list/description/)
       ```html
       Example:
       Given 1->2->3->4->5->NULL,
       return 1->3->5->2->4->NULL.
       ```
-      
-    * [11. 876 Middle_of_the_linked_list](#11-middle-of-the-linked-list)
-      876\. Middle of the linked list (Easy) [Leetcode](https://leetcode.com/problems/middle-of-the-linked-list/description/)
+    * [11. 876 Middle_of_the_linked_list](#11-middle-of-the-linked-list) Middle of the linked list (Easy) [Leetcode](https://leetcode.com/problems/middle-of-the-linked-list/description/)
       
 <!-- GFM-TOC -->
 

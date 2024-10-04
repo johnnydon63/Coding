@@ -380,5 +380,12 @@ struct ListNode* oddEvenList(struct ListNode* head) {
 
 ##  11. Middle of the linked list
 ```c
-tbd
+struct ListNode* middleNode(struct ListNode* head) {
+    struct ListNode *slow = head, *fast = head;
+    while(fast  && fast->next) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
 ```

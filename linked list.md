@@ -11,7 +11,7 @@
     * [8. 234 回文链表 ](#8-回文链表)
     * [9. 725 分隔链表 ](#9-分隔链表)
     * [10. 328 链表元素按奇偶聚集 ](#10-链表元素按奇偶聚集)
-    * [11. 876 Middle_of_the_linked_list](#11-Middle_of_the_linked_list)
+    * [11. 876 Middle_of_the_linked_list](#11-链表中点)
 <!-- GFM-TOC -->
 
 
@@ -416,7 +416,8 @@ struct ListNode* oddEvenList(struct ListNode* head) {
     return odd_h.next;
 }
 ```
-##  11.  Middle of the linked list
+
+##  11. 链表中点
 
 876\. Middle of the linked list (Easy)
 

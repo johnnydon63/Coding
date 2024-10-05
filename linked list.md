@@ -52,23 +52,18 @@ struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *he
 ```
 
 ##  2. 链表反转
-递归
-
-```java
-public ListNode reverseList(ListNode head) {
-    if (head == null || head.next == null) {
+```c
+ //recrusive
+struct ListNode* reverseList(struct ListNode* head) {
+    struct ListNode* new_head = NULL;
+    if(head == NULL || head->next == NULL)
         return head;
-    }
-    ListNode next = head.next;
-    ListNode newHead = reverseList(next);
-    next.next = head;
-    head.next = null;
-    return newHead;
+    new_head = reverseList(head->next);
+    head->next->next = head;
+    head->next = NULL;
+    return new_head;
 }
 ```
-
-
-
 ```c
 struct ListNode* reverseList(struct ListNode* head) {
     struct ListNode *pre = NULL, *cur = head, *nex = head;

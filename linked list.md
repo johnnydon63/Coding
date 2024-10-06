@@ -26,7 +26,7 @@
       return 1->3->5->2->4->NULL.
       ```
     * [11. 876 Middle_of_the_linked_list](#11-middle-of-the-linked-list) Middle of the linked list (Easy) [Leetcode](https://leetcode.com/problems/middle-of-the-linked-list/description/)
-      
+    * [12. 141 Linked List Cycle](#12-linked-list-cycle) (Easy) [Leetcode](https://leetcode.com/problems/linked-list-cycle/description/)
 <!-- GFM-TOC -->
 
 
@@ -332,7 +332,7 @@ struct ListNode* oddEvenList(struct ListNode* head) {
 }
 ```
 
-##  11. Middle of the linked list [Leetcode](https://leetcode.com/problems/middle-of-the-linked-list/description/)
+##  11. Middle of the linked list 
 ```c
 struct ListNode* middleNode(struct ListNode* head) {
     struct ListNode *slow = head, *fast = head;
@@ -344,7 +344,7 @@ struct ListNode* middleNode(struct ListNode* head) {
 }
 ```
 
-##  12. tbd
+##  12. Linked List Cycle
 ```c
 struct ListNode* middleNode(struct ListNode* head) {
     struct ListNode *slow = head, *fast = head;

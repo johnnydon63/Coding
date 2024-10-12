@@ -27,6 +27,7 @@
       ```
     * [11. 876 Middle_of_the_linked_list](#11-middle-of-the-linked-list) Middle of the linked list (Easy) [Leetcode](https://leetcode.com/problems/middle-of-the-linked-list/description/)
     * [12. 141 Linked List Cycle](#12-linked-list-cycle) (Easy) [Leetcode](https://leetcode.com/problems/linked-list-cycle/description/)
+    * [13. 143 Reorder List](#13-reorder-list) (Medium) [Leetcode](https://leetcode.com/problems/reorder-list/)
 <!-- GFM-TOC -->
 
 
@@ -355,5 +356,42 @@ bool hasCycle(struct ListNode *head) {
             return true;
     }
     return false;
+}
+```
+##  13. Reorder List
+```c
+struct ListNode* reverse(struct ListNode* head) {
+    struct ListNode *pre = NULL, *cur = head, *nex = head;
+    while(cur) {
+        nex = cur->next;
+        cur->next = pre;
+        pre = cur;
+        cur = nex;
+    }
+    return pre;
+}
+void reorderList(struct ListNode* head) {
+    if(head == NULL || head->next == NULL)
+        return;
+    struct ListNode *l1 = head, *l2 = head, *tmp = NULL;
+    while(l2 && l2->next) {
+        l2 = l2->next->next;
+        tmp = l1;
+        l1 = l1->next;
+    }
+    tmp->next = NULL;
+    l1 = reverse(l1);
+    struct ListNode *first_nex = NULL, *second_nex = NULL;
+        //head: 1, 2,
+        //l1: 5, 4, 3
+    while(head && l1) {
+        first_nex = head->next;
+        second_nex = l1->next;
+        head->next = l1;
+        if(first_nex)
+            l1->next = first_nex;
+        l1 = second_nex;
+        head = first_nex;
+    }
 }
 ```

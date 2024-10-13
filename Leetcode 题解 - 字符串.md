@@ -1,7 +1,7 @@
-# Leetcode 题解 - 字符串
+# 字符串
 <!-- GFM-TOC -->
-* [Leetcode 题解 - 字符串](#leetcode-题解---字符串)
-    * [1. 字符串循环移位包含](#1-字符串循环移位包含)
+* [字符串]
+    * [1. 796 Roate String ](#1-字符串循环移位包含) Roate String (Easy) [Leetcode](https://leetcode.com/problems/rotate-string/description/?source=submission-noac)
     * [2. 字符串循环移位](#2-字符串循环移位)
     * [3. 字符串中单词的翻转](#3-字符串中单词的翻转)
     * [4. 两个字符串包含的字符是否完全相同](#4-两个字符串包含的字符是否完全相同)
@@ -14,17 +14,20 @@
 
 
 ## 1. 字符串循环移位包含
-
-[编程之美 3.1](#)
-
-```html
-s1 = AABCD, s2 = CDAA
-Return : true
+```c
+#define LEN 201
+bool rotateString(char* s, char* goal) {
+    char a[LEN], b[LEN];
+    if(strlen(s) > strlen(goal))
+        return false;
+    strcpy(a, s);
+    strcpy(b, s);
+    strcat(a, b);
+    if(strstr(a, goal) != NULL)
+        return true;
+    return false;
+}
 ```
-
-给定两个字符串 s1 和 s2，要求判定 s2 是否能够被 s1 做循环移位得到的字符串包含。
-
-s1 进行循环移位的结果是 s1s1 的子字符串，因此只要判断 s2 是否是 s1s1 的子字符串即可。
 
 ## 2. 字符串循环移位
 

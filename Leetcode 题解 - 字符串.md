@@ -1,6 +1,6 @@
 # 字符串
 <!-- GFM-TOC -->
-* [字符串]
+* [参见字符串](https://docs.google.com/document/d/1BcjvBvmOlHtKoHfxKAHunLw2Oedu-s2tSBTsltmx-e0/edit?tab=t.0#heading=h.zc4m9ltemerb)
     * [1. 796 Roate String ](#1-字符串循环移位包含) Roate String (Easy) [Leetcode](https://leetcode.com/problems/rotate-string/description/?source=submission-noac)
     * [2. 字符串循环移位](#2-字符串循环移位)
     * [3. 字符串中单词的翻转](#3-字符串中单词的翻转)

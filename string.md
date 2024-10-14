@@ -5,7 +5,7 @@
     * [2. 字符串循环移位](#2-字符串循环移位)
     * [3. 151 字符串中单词的翻转](#3-字符串中单词的翻转) reverse-words-in-a-string (M) [Leetcode](https://leetcode.com/problems/reverse-words-in-a-string/description/)
     * [4. 242 Valid Anagram](#4-两个字符串包含的字符是否完全相同) valid-anagram (E) [Leetcode](https://leetcode.com/problems/valid-anagram/description/)
-    * [5. 计算一组字符集合可以组成的回文字符串的最大长度](#5-计算一组字符集合可以组成的回文字符串的最大长度)
+    * [5. 409 Longest Palindrome](#5-计算一组字符集合可以组成的回文字符串的最大长度) (E) [Leetcode](https://leetcode.com/problems/longest-palindrome/description/)
     * [6. 字符串同构](#6-字符串同构)
     * [7. 回文子字符串个数](#7-回文子字符串个数)
     * [8. 判断一个整数是否是回文数](#8-判断一个整数是否是回文数)
@@ -90,11 +90,6 @@ char* reverseWords(char* s) {
 ```
 
 ## 4. 两个字符串包含的字符是否完全相同
-
-242\. Valid Anagram (Easy)
-
-[Leetcode](https://leetcode.com/problems/valid-anagram/description/) / [力扣](https://leetcode-cn.com/problems/valid-anagram/description/)
-
 ```html
 s = "anagram", t = "nagaram", return true.
 s = "rat", t = "car", return false.
@@ -126,11 +121,6 @@ bool isAnagram(char* s, char* t) {
 ```
 
 ## 5. 计算一组字符集合可以组成的回文字符串的最大长度
-
-409\. Longest Palindrome (Easy)
-
-[Leetcode](https://leetcode.com/problems/longest-palindrome/description/) / [力扣](https://leetcode-cn.com/problems/longest-palindrome/description/)
-
 ```html
 Input : "abccccdd"
 Output : 7
@@ -141,20 +131,24 @@ Explanation : One longest palindrome that can be built is "dccaccd", whose lengt
 
 因为回文字符串最中间的那个字符可以单独出现，所以如果有单独的字符就把它放到最中间。
 
-```java
-public int longestPalindrome(String s) {
-    int[] cnts = new int[256];
-    for (char c : s.toCharArray()) {
-        cnts[c]++;
+```c
+int longestPalindrome(char* s) {
+    int map[128] = {0};
+    if(s == NULL)
+        return 0;
+    int out = 0;
+    while(*s != '\0') {
+        map[*s++]++;
     }
-    int palindrome = 0;
-    for (int cnt : cnts) {
-        palindrome += (cnt / 2) * 2;
+    for(int i = 0; i < 128; i++) {
+        out += map[i]/2 * 2;
+        map[i] -= map[i]/2 * 2;
     }
-    if (palindrome < s.length()) {
-        palindrome++;   // 这个条件下 s 中一定有单个未使用的字符存在，可以把这个字符放到回文的最中间
+    for(int i = 0; i < 128; i++) {
+        if(map[i] >= 1)
+            return out + 1;
     }
-    return palindrome;
+    return out;
 }
 ```
 

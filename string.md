@@ -6,7 +6,7 @@
     * [3. 151 字符串中单词的翻转](#3-字符串中单词的翻转) reverse-words-in-a-string (M) [Leetcode](https://leetcode.com/problems/reverse-words-in-a-string/description/)
     * [4. 242 Valid Anagram](#4-两个字符串包含的字符是否完全相同) valid-anagram (E) [Leetcode](https://leetcode.com/problems/valid-anagram/description/)
     * [5. 409 Longest Palindrome](#5-计算一组字符集合可以组成的回文字符串的最大长度) (E) [Leetcode](https://leetcode.com/problems/longest-palindrome/description/)
-    * [6. 字符串同构](#6-字符串同构)
+    * [6. 205 Isomorphic Strings](#6-字符串同构) (E) [Leetcode](https://leetcode.com/problems/isomorphic-strings/description/)
     * [7. 回文子字符串个数](#7-回文子字符串个数)
     * [8. 判断一个整数是否是回文数](#8-判断一个整数是否是回文数)
     * [9. 统计二进制字符串中连续 1 和连续 0 数量相同的子字符串个数](#9-统计二进制字符串中连续-1-和连续-0-数量相同的子字符串个数)
@@ -155,28 +155,19 @@ int longestPalindrome(char* s) {
 ## 6. 字符串同构
 
 205\. Isomorphic Strings (Easy)
-
-[Leetcode](https://leetcode.com/problems/isomorphic-strings/description/) / [力扣](https://leetcode-cn.com/problems/isomorphic-strings/description/)
-
-```html
-Given "egg", "add", return true.
-Given "foo", "bar", return false.
-Given "paper", "title", return true.
-```
-
 记录一个字符上次出现的位置，如果两个字符串中的字符上次出现的位置一样，那么就属于同构。
-
-```java
-public boolean isIsomorphic(String s, String t) {
-    int[] preIndexOfS = new int[256];
-    int[] preIndexOfT = new int[256];
-    for (int i = 0; i < s.length(); i++) {
-        char sc = s.charAt(i), tc = t.charAt(i);
-        if (preIndexOfS[sc] != preIndexOfT[tc]) {
-            return false;
+```c
+bool isIsomorphic(char* s, char* t) {
+    int map_s[256] = {0}, map_t[256] = {0}, len = strlen(s);
+    for(int i = 1; i < len + 1; i++) {
+        if(map_s[*s] == 0) {
+            map_s[*s] = i;
         }
-        preIndexOfS[sc] = i + 1;
-        preIndexOfT[tc] = i + 1;
+        if(map_t[*t] == 0){
+            map_t[*t] = i;
+        }
+        if(map_s[*s++] != map_t[*t++])
+            return false;
     }
     return true;
 }

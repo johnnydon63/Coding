@@ -8,7 +8,7 @@
     * [5. 409 Longest Palindrome](#5-计算一组字符集合可以组成的回文字符串的最大长度) (E) [Leetcode](https://leetcode.com/problems/longest-palindrome/description/)
     * [6. 205 Isomorphic Strings](#6-字符串同构) (E) [Leetcode](https://leetcode.com/problems/isomorphic-strings/description/)
     * [7. 回文子字符串个数](#7-回文子字符串个数)
-    * [8. 判断一个整数是否是回文数](#8-判断一个整数是否是回文数)
+    * [8. 9 Palindrome Number](#8-判断一个整数是否是回文数) (E) [Leetcode](https://leetcode.com/problems/palindrome-number/description/)
     * [9. 统计二进制字符串中连续 1 和连续 0 数量相同的子字符串个数](#9-统计二进制字符串中连续-1-和连续-0-数量相同的子字符串个数)
 <!-- GFM-TOC -->
 
@@ -208,29 +208,16 @@ private void extendSubstrings(String s, int start, int end) {
 ```
 
 ## 8. 判断一个整数是否是回文数
-
-9\. Palindrome Number (Easy)
-
-[Leetcode](https://leetcode.com/problems/palindrome-number/description/) / [力扣](https://leetcode-cn.com/problems/palindrome-number/description/)
-
-要求不能使用额外空间，也就不能将整数转换为字符串进行判断。
-
-将整数分成左右两部分，右边那部分需要转置，然后判断这两部分是否相等。
-
-```java
-public boolean isPalindrome(int x) {
-    if (x == 0) {
-        return true;
-    }
-    if (x < 0 || x % 10 == 0) {
+```c
+bool isPalindrome(int x) {
+    long m = x, n = 0;
+    if(x < 0)
         return false;
+    while(m > 0) {
+        n = 10 * n + m % 10;
+        m /= 10;
     }
-    int right = 0;
-    while (x > right) {
-        right = right * 10 + x % 10;
-        x /= 10;
-    }
-    return x == right || x == right / 10;
+    return x == n;
 }
 ```
 

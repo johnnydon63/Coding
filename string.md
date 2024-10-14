@@ -1,10 +1,10 @@
 # 字符串
 <!-- GFM-TOC -->
 * [参见字符串](https://docs.google.com/document/d/1BcjvBvmOlHtKoHfxKAHunLw2Oedu-s2tSBTsltmx-e0/edit?tab=t.0#heading=h.zc4m9ltemerb)
-    * [1. 796 Roate String ](#1-字符串循环移位包含) Roate String (Easy) [Leetcode](https://leetcode.com/problems/rotate-string/description/?source=submission-noac)
+    * [1. 796 Roate String ](#1-字符串循环移位包含) Roate String (E) [Leetcode](https://leetcode.com/problems/rotate-string/description/?source=submission-noac)
     * [2. 字符串循环移位](#2-字符串循环移位)
-    * [3. 字符串中单词的翻转](#3-字符串中单词的翻转) reverse-words-in-a-string (Medium) [Leetcode](https://leetcode.com/problems/reverse-words-in-a-string/description/)
-    * [4. 两个字符串包含的字符是否完全相同](#4-两个字符串包含的字符是否完全相同)
+    * [3. 字符串中单词的翻转](#3-字符串中单词的翻转) reverse-words-in-a-string (M) [Leetcode](https://leetcode.com/problems/reverse-words-in-a-string/description/)
+    * [4. 242 Valid Anagram](#4-两个字符串包含的字符是否完全相同) valid-anagram (E) [Leetcode](https://leetcode.com/problems/valid-anagram/description/)
     * [5. 计算一组字符集合可以组成的回文字符串的最大长度](#5-计算一组字符集合可以组成的回文字符串的最大长度)
     * [6. 字符串同构](#6-字符串同构)
     * [7. 回文子字符串个数](#7-回文子字符串个数)
@@ -104,19 +104,22 @@ s = "rat", t = "car", return false.
 
 由于本题的字符串只包含 26 个小写字符，因此可以使用长度为 26 的整型数组对字符串出现的字符进行统计，不再使用 HashMap。
 
-```java
-public boolean isAnagram(String s, String t) {
-    int[] cnts = new int[26];
-    for (char c : s.toCharArray()) {
-        cnts[c - 'a']++;
+```c
+bool isAnagram(char* s, char* t) {
+    int alph[26] = {0};
+    while(*s != '\0') {
+        alph[*s++ - 'a']++;
     }
-    for (char c : t.toCharArray()) {
-        cnts[c - 'a']--;
-    }
-    for (int cnt : cnts) {
-        if (cnt != 0) {
+    while(*t != '\0') {
+        if(alph[*t - 'a'] == 0)
             return false;
-        }
+        else
+            alph[*t - 'a']--;
+        t++;
+    }
+    for(int i = 0; i < 26; i++) {
+        if(alph[i] != 0)
+            return false;
     }
     return true;
 }

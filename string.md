@@ -9,7 +9,7 @@
     * [6. 205 Isomorphic Strings](#6-字符串同构) (E) [Leetcode](https://leetcode.com/problems/isomorphic-strings/description/)
     * [7. 回文子字符串个数](#7-回文子字符串个数)
     * [8. 9 Palindrome Number](#8-判断一个整数是否是回文数) (E) [Leetcode](https://leetcode.com/problems/palindrome-number/description/)
-    * [9. 统计二进制字符串中连续 1 和连续 0 数量相同的子字符串个数](#9-统计二进制字符串中连续-1-和连续-0-数量相同的子字符串个数)
+    * [9. 696 Count Binary Substrings](#9-统计二进制字符串中连续-1-和连续-0-数量相同的子字符串个数) (E) [Leetcode](https://leetcode.com/problems/count-binary-substrings/description/)
 <!-- GFM-TOC -->
 
 
@@ -233,21 +233,19 @@ Output: 6
 Explanation: There are 6 substrings that have equal number of consecutive 1's and 0's: "0011", "01", "1100", "10", "0011", and "01".
 ```
 
-```java
-public int countBinarySubstrings(String s) {
-    int preLen = 0, curLen = 1, count = 0;
-    for (int i = 1; i < s.length(); i++) {
-        if (s.charAt(i) == s.charAt(i - 1)) {
-            curLen++;
-        } else {
-            preLen = curLen;
-            curLen = 1;
+```c
+int countBinarySubstrings(char* s) {
+    int out = 0, pre = 0, cur = 1;
+    for(int i = 1; i < strlen(s); i++) {
+        if(s[i] == s[i - 1])
+            cur++;
+        else {
+            pre = cur;
+            cur = 1;
         }
-
-        if (preLen >= curLen) {
-            count++;
-        }
+        if(cur <= pre)
+            out++;
     }
-    return count;
+    return out;
 }
 ```

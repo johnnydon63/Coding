@@ -3,7 +3,7 @@
 * [参见字符串](https://docs.google.com/document/d/1BcjvBvmOlHtKoHfxKAHunLw2Oedu-s2tSBTsltmx-e0/edit?tab=t.0#heading=h.zc4m9ltemerb)
     * [1. 796 Roate String ](#1-字符串循环移位包含) Roate String (Easy) [Leetcode](https://leetcode.com/problems/rotate-string/description/?source=submission-noac)
     * [2. 字符串循环移位](#2-字符串循环移位)
-    * [3. 字符串中单词的翻转](#3-字符串中单词的翻转)
+    * [3. 字符串中单词的翻转](#3-字符串中单词的翻转) reverse-words-in-a-string (Medium) [Leetcode](https://leetcode.com/problems/reverse-words-in-a-string/description/)
     * [4. 两个字符串包含的字符是否完全相同](#4-两个字符串包含的字符是否完全相同)
     * [5. 计算一组字符集合可以组成的回文字符串的最大长度](#5-计算一组字符集合可以组成的回文字符串的最大长度)
     * [6. 字符串同构](#6-字符串同构)
@@ -30,9 +30,6 @@ bool rotateString(char* s, char* goal) {
 ```
 
 ## 2. 字符串循环移位
-
-[编程之美 2.17](#)
-
 ```html
 s = "abcd123" k = 3
 Return "123abcd"
@@ -43,15 +40,54 @@ Return "123abcd"
 将 abcd123 中的 abcd 和 123 单独翻转，得到 dcba321，然后对整个字符串进行翻转，得到 123abcd。
 
 ## 3. 字符串中单词的翻转
-
-[程序员代码面试指南](#)
-
-```html
-s = "I am a student"
-Return "student a am I"
+```c
+char* reverse(char* s, int head, int tail) {
+    char tmp;
+    while(head < tail) {
+        tmp = s[head];
+        s[head++] = s[tail];
+        s[tail--] = tmp;
+    }
+    return s;
+}
+void del(char* s, int id) {
+    for(int i = id; i < strlen(s); i++) {
+        s[i] = s[i + 1];
+    }
+}
+char* reverseWords(char* s) {
+    char* it = s;
+    int l = 0, r = 0;
+    //removing leading space
+    while(*it++ == ' ') {
+        s++;
+    }
+    //removing dup space
+    it = s;
+    for(int i = 0; s[i] != '\0'; i++) {
+        if(s[i] == ' ') {
+            if(s[i + 1] == ' ') {
+                del(s, i + 1);
+                i--;
+            }
+            if(s[i + 1] == '\0') {
+                del(s, i);
+            }
+        }
+    }
+    reverse(s, 0, strlen(s) - 1);
+    while(s[r + 1] != '\0') {
+        if(s[r] != ' ')
+            r++;
+        else {
+            reverse(s, l, r - 1);
+            l = r++ + 1;
+        }
+    }
+    reverse(s, l, r);
+    return s;
+}
 ```
-
-将每个单词翻转，然后将整个字符串翻转。
 
 ## 4. 两个字符串包含的字符是否完全相同
 

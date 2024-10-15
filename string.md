@@ -3,7 +3,7 @@
 * [参见字符串](https://docs.google.com/document/d/1BcjvBvmOlHtKoHfxKAHunLw2Oedu-s2tSBTsltmx-e0/edit?tab=t.0#heading=h.zc4m9ltemerb)
     * [1. 796 Roate String ](#1-字符串循环移位包含) Roate String (E) [Leetcode](https://leetcode.com/problems/rotate-string/description/?source=submission-noac)
     * [2. 字符串循环移位](#2-字符串循环移位)
-    * [3. 151 字符串中单词的翻转](#3-字符串中单词的翻转) reverse-words-in-a-string (M) [Leetcode](https://leetcode.com/problems/reverse-words-in-a-string/description/)
+    * [3. 151 Reverse Words in a String](#3-字符串中单词的翻转) (M) [Leetcode](https://leetcode.com/problems/reverse-words-in-a-string/description/)
     * [4. 242 Valid Anagram](#4-两个字符串包含的字符是否完全相同) valid-anagram (E) [Leetcode](https://leetcode.com/problems/valid-anagram/description/)
     * [5. 409 Longest Palindrome](#5-计算一组字符集合可以组成的回文字符串的最大长度) (E) [Leetcode](https://leetcode.com/problems/longest-palindrome/description/)
     * [6. 205 Isomorphic Strings](#6-字符串同构) (E) [Leetcode](https://leetcode.com/problems/isomorphic-strings/description/)

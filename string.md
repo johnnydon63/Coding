@@ -7,7 +7,7 @@
     * [4. 242 Valid Anagram](#4-两个字符串包含的字符是否完全相同) valid-anagram (E) [Leetcode](https://leetcode.com/problems/valid-anagram/description/)
     * [5. 409 Longest Palindrome](#5-计算一组字符集合可以组成的回文字符串的最大长度) (E) [Leetcode](https://leetcode.com/problems/longest-palindrome/description/)
     * [6. 205 Isomorphic Strings](#6-字符串同构) (E) [Leetcode](https://leetcode.com/problems/isomorphic-strings/description/)
-    * [7. 回文子字符串个数](#7-回文子字符串个数)
+    * [7. 647 Palindromic Substrings](#7-回文子字符串个数) [M] [Leetcode](https://leetcode.com/problems/palindromic-substrings/description/)
     * [8. 9 Palindrome Number](#8-判断一个整数是否是回文数) (E) [Leetcode](https://leetcode.com/problems/palindrome-number/description/)
     * [9. 696 Count Binary Substrings](#9-统计二进制字符串中连续-1-和连续-0-数量相同的子字符串个数) (E) [Leetcode](https://leetcode.com/problems/count-binary-substrings/description/)
 <!-- GFM-TOC -->
@@ -176,34 +176,29 @@ bool isIsomorphic(char* s, char* t) {
 ## 7. 回文子字符串个数
 
 647\. Palindromic Substrings (Medium)
-
-[Leetcode](https://leetcode.com/problems/palindromic-substrings/description/) / [力扣](https://leetcode-cn.com/problems/palindromic-substrings/description/)
-
 ```html
 Input: "aaa"
 Output: 6
 Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
 ```
-
 从字符串的某一位开始，尝试着去扩展子字符串。
-
-```java
-private int cnt = 0;
-
-public int countSubstrings(String s) {
-    for (int i = 0; i < s.length(); i++) {
-        extendSubstrings(s, i, i);     // 奇数长度
-        extendSubstrings(s, i, i + 1); // 偶数长度
+```c
+int countHelper(char* s, int l, int r) {
+    int out = 0;
+    while(l >= 0 && r < strlen(s) && s[l] == s[r]) {
+        l--;
+        r++;
+        out++;
     }
-    return cnt;
+    return out;
 }
-
-private void extendSubstrings(String s, int start, int end) {
-    while (start >= 0 && end < s.length() && s.charAt(start) == s.charAt(end)) {
-        start--;
-        end++;
-        cnt++;
+int countSubstrings(char* s) {
+    int out = 0;
+    for(int i = 0; i < strlen(s); i++) {
+        out += countHelper(s, i, i);
+        out += countHelper(s, i, i + 1);
     }
+    return out;
 }
 ```
 

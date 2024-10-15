@@ -222,11 +222,6 @@ bool isPalindrome(int x) {
 ```
 
 ## 9. 统计二进制字符串中连续 1 和连续 0 数量相同的子字符串个数
-
-696\. Count Binary Substrings (Easy)
-
-[Leetcode](https://leetcode.com/problems/count-binary-substrings/description/) / [力扣](https://leetcode-cn.com/problems/count-binary-substrings/description/)
-
 ```html
 Input: "00110011"
 Output: 6

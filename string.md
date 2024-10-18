@@ -10,6 +10,7 @@
     * [7. 647 Palindromic Substrings](#7-回文子字符串个数) [M] [Leetcode](https://leetcode.com/problems/palindromic-substrings/description/)
     * [8. 9 Palindrome Number](#8-判断一个整数是否是回文数) (E) [Leetcode](https://leetcode.com/problems/palindrome-number/description/)
     * [9. 696 Count Binary Substrings](#9-统计二进制字符串中连续-1-和连续-0-数量相同的子字符串个数) (E) [Leetcode](https://leetcode.com/problems/count-binary-substrings/description/)
+    * [10. 344 Reverse String](#10-反转字符串) (E) [Leetcode](https://leetcode.com/problems/reverse-string/)
 <!-- GFM-TOC -->
 
 
@@ -237,5 +238,19 @@ int countBinarySubstrings(char* s) {
             out++;
     }
     return out;
+}
+```
+## 10. 反转字符串
+```c
+void swap(char*s, int l, int r) {
+    char tmp = s[l];
+    s[l] = s[r];
+    s[r] = tmp;
+}
+void reverseString(char* s, int sSize) {
+    int l = 0, r = sSize - 1;
+    while(l < r) {
+        swap(s, l++, r--);
+    }
 }
 ```

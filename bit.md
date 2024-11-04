@@ -3,7 +3,7 @@
  * [0. 原理](#0-原理)
  * [1. 统计两个数的二进制表示有多少位不同](#1-统计两个数的二进制表示有多少位不同)[Leetcode](https://leetcode.com/problems/hamming-distance/)
  * [2. 数组中唯一一个不重复的元素](#2-数组中唯一一个不重复的元素)[Leetcode](https://leetcode.com/problems/single-number/description/)
- * [3. 找出数组中缺失的那个数](#3-找出数组中缺失的那个数)
+ * [3. 找出数组中缺失的那个数](#3-找出数组中缺失的那个数)[Leetcode](https://leetcode.com/problems/missing-number/description/)
  * [4. 数组中不重复的两个元素](#4-数组中不重复的两个元素)
  * [5. 翻转一个数的比特位](#5-翻转一个数的比特位)
  * [6. 不用额外变量交换两个整数](#6-不用额外变量交换两个整数)
@@ -143,36 +143,15 @@ int singleNumber(int* nums, int numsSize) {
 }
 ```
 
-两个相同的数异或的结果为 0，对所有数进行异或操作，最后的结果就是单独出现的那个数。
-
-```java
-public int singleNumber(int[] nums) {
-    int ret = 0;
-    for (int n : nums) ret = ret ^ n;
-    return ret;
-}
-```
-
 ## 3. 找出数组中缺失的那个数
-
-268\. Missing Number (Easy)
-
-[Leetcode](https://leetcode.com/problems/missing-number/description/) / [力扣](https://leetcode-cn.com/problems/missing-number/description/)
-
-```html
-Input: [3,0,1]
-Output: 2
-```
-
-题目描述：数组元素在 0-n 之间，但是有一个数是缺失的，要求找到这个缺失的数。
-
-```java
-public int missingNumber(int[] nums) {
+```c
+int missingNumber(int* nums, int numsSize) {
     int ret = 0;
-    for (int i = 0; i < nums.length; i++) {
-        ret = ret ^ i ^ nums[i];
+    for(int i = 0; i < numsSize; i++) {
+        ret ^= i ^ nums[i];
     }
-    return ret ^ nums.length;
+    ret ^= numsSize;
+    return ret;
 }
 ```
 

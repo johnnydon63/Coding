@@ -1,7 +1,7 @@
 # 位运算
 <!-- GFM-TOC -->
  * [0. 原理](#0-原理)
- * [1. 统计两个数的二进制表示有多少位不同](#1-统计两个数的二进制表示有多少位不同)
+ * [1. 统计两个数的二进制表示有多少位不同](#1-统计两个数的二进制表示有多少位不同)[Leetcode](https://leetcode.com/problems/hamming-distance/)
  * [2. 数组中唯一一个不重复的元素](#2-数组中唯一一个不重复的元素)
  * [3. 找出数组中缺失的那个数](#3-找出数组中缺失的那个数)
  * [4. 数组中不重复的两个元素](#4-数组中不重复的两个元素)
@@ -120,57 +120,15 @@ static String toBinaryString(int i);     // 转换为二进制表示的字符串
 ```
 
 ## 1. 统计两个数的二进制表示有多少位不同
-
-461. Hamming Distance (Easy)
-
-[Leetcode](https://leetcode.com/problems/hamming-distance/) / [力扣](https://leetcode-cn.com/problems/hamming-distance/)
-
-```html
-Input: x = 1, y = 4
-
-Output: 2
-
-Explanation:
-1   (0 0 0 1)
-4   (0 1 0 0)
-       ↑   ↑
-
-The above arrows point to positions where the corresponding bits are different.
-```
-
-对两个数进行异或操作，位级表示不同的那一位为 1，统计有多少个 1 即可。
-
-```java
-public int hammingDistance(int x, int y) {
-    int z = x ^ y;
-    int cnt = 0;
-    while(z != 0) {
-        if ((z & 1) == 1) cnt++;
-        z = z >> 1;
+```c
+int hammingDistance(int x, int y) {
+    int tmp = x ^ y, out = 0;
+    for(int i = 0; i < sizeof(int) * 8; i++) {
+        if(tmp & 0x1 == 1) 
+            out++;
+        tmp >>= 1;
     }
-    return cnt;
-}
-```
-
-使用 z&(z-1) 去除 z 位级表示最低的那一位。
-
-```java
-public int hammingDistance(int x, int y) {
-    int z = x ^ y;
-    int cnt = 0;
-    while (z != 0) {
-        z &= (z - 1);
-        cnt++;
-    }
-    return cnt;
-}
-```
-
-可以使用 Integer.bitcount() 来统计 1 个的个数。
-
-```java
-public int hammingDistance(int x, int y) {
-    return Integer.bitCount(x ^ y);
+    return out;
 }
 ```
 

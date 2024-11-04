@@ -2,7 +2,7 @@
 <!-- GFM-TOC -->
  * [0. 原理](#0-原理)
  * [1. 统计两个数的二进制表示有多少位不同](#1-统计两个数的二进制表示有多少位不同)[Leetcode](https://leetcode.com/problems/hamming-distance/)
- * [2. 数组中唯一一个不重复的元素](#2-数组中唯一一个不重复的元素)
+ * [2. 数组中唯一一个不重复的元素](#2-数组中唯一一个不重复的元素)[Leetcode](https://leetcode.com/problems/single-number/description/)
  * [3. 找出数组中缺失的那个数](#3-找出数组中缺失的那个数)
  * [4. 数组中不重复的两个元素](#4-数组中不重复的两个元素)
  * [5. 翻转一个数的比特位](#5-翻转一个数的比特位)
@@ -133,14 +133,14 @@ int hammingDistance(int x, int y) {
 ```
 
 ## 2. 数组中唯一一个不重复的元素
-
-136\. Single Number (Easy)
-
-[Leetcode](https://leetcode.com/problems/single-number/description/) / [力扣](https://leetcode-cn.com/problems/single-number/description/)
-
-```html
-Input: [4,1,2,1,2]
-Output: 4
+```c
+int singleNumber(int* nums, int numsSize) {
+    int out = 0;
+    for(int i = 0; i < numsSize; i++) {
+        out = out ^ nums[i];
+    }
+    return out;
+}
 ```
 
 两个相同的数异或的结果为 0，对所有数进行异或操作，最后的结果就是单独出现的那个数。

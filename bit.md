@@ -4,8 +4,8 @@
  * [1. 统计两个数的二进制表示有多少位不同](#1-统计两个数的二进制表示有多少位不同)[Leetcode](https://leetcode.com/problems/hamming-distance/)
  * [2. 数组中唯一一个不重复的元素](#2-数组中唯一一个不重复的元素)[Leetcode](https://leetcode.com/problems/single-number/description/)
  * [3. 找出数组中缺失的那个数](#3-找出数组中缺失的那个数)[Leetcode](https://leetcode.com/problems/missing-number/description/)
- * [4. 数组中不重复的两个元素](#4-数组中不重复的两个元素)
- * [5. 翻转一个数的比特位](#5-翻转一个数的比特位)
+ * [4. 数组中不重复的两个元素](#4-数组中不重复的两个元素)[Leetcode](https://leetcode.com/problems/single-number-iii/description/)
+ * [5. 翻转一个数的比特位](#5-翻转一个数的比特位)[Leetcode](https://leetcode.com/problems/reverse-bits/description/
  * [6. 不用额外变量交换两个整数](#6-不用额外变量交换两个整数)
  * [7. 判断一个数是不是 2 的 n 次方](#7-判断一个数是不是-2-的-n-次方)
  * [8.  判断一个数是不是 4 的 n 次方](#8--判断一个数是不是-4-的-n-次方)
@@ -156,44 +156,40 @@ int missingNumber(int* nums, int numsSize) {
 ```
 
 ## 4. 数组中不重复的两个元素
-
-260\. Single Number III (Medium)
-
-[Leetcode](https://leetcode.com/problems/single-number-iii/description/) / [力扣](https://leetcode-cn.com/problems/single-number-iii/description/)
-
 两个不相等的元素在位级表示上必定会有一位存在不同。
 
 将数组的所有元素异或得到的结果为不存在重复的两个元素异或的结果。
 
 diff &= -diff 得到出 diff 最右侧不为 0 的位，也就是不存在重复的两个元素在位级表示上最右侧不同的那一位，利用这一位就可以将两个元素区分开来。
 
-```java
-public int[] singleNumber(int[] nums) {
+```c
+int* singleNumber(int* nums, int numsSize, int* returnSize) {
     int diff = 0;
-    for (int num : nums) diff ^= num;
-    diff &= -diff;  // 得到最右一位
-    int[] ret = new int[2];
-    for (int num : nums) {
-        if ((num & diff) == 0) ret[0] ^= num;
-        else ret[1] ^= num;
+    int* ret = malloc(sizeof(int) * 2);
+    memset(ret, 0, sizeof(int) * 2);
+    *returnSize = 2;
+    for(int i = 0; i < numsSize; i++) {
+        diff ^= nums[i];
+    }
+    diff = diff == -2147483648 ? -2147483648 : diff & (-diff);
+    for(int i = 0; i < numsSize; i++) {
+        if((nums[i] & diff) == 0) 
+            ret[0] ^= nums[i];
+        else 
+            ret[1] ^= nums[i];
     }
     return ret;
 }
 ```
 
 ## 5. 翻转一个数的比特位
-
-190\. Reverse Bits (Easy)
-
-[Leetcode](https://leetcode.com/problems/reverse-bits/description/) / [力扣](https://leetcode-cn.com/problems/reverse-bits/description/)
-
-```java
-public int reverseBits(int n) {
-    int ret = 0;
-    for (int i = 0; i < 32; i++) {
+```c
+uint32_t reverseBits(uint32_t n) {
+    uint32_t ret = 0;
+    for(int i = 0; i < 32; i++) {
         ret <<= 1;
-        ret |= (n & 1);
-        n >>>= 1;
+        ret |= n & 0x1;
+        n >>= 1;
     }
     return ret;
 }

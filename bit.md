@@ -5,7 +5,7 @@
  * [2. 数组中唯一一个不重复的元素](#2-数组中唯一一个不重复的元素)[Leetcode](https://leetcode.com/problems/single-number/description/)
  * [3. 找出数组中缺失的那个数](#3-找出数组中缺失的那个数)[Leetcode](https://leetcode.com/problems/missing-number/description/)
  * [4. 数组中不重复的两个元素](#4-数组中不重复的两个元素)[Leetcode](https://leetcode.com/problems/single-number-iii/description/)
- * [5. 翻转一个数的比特位](#5-翻转一个数的比特位)[Leetcode](https://leetcode.com/problems/reverse-bits/description/
+ * [5. 翻转一个数的比特位](#5-翻转一个数的比特位)[Leetcode](https://leetcode.com/problems/reverse-bits/description/)
  * [6. 不用额外变量交换两个整数](#6-不用额外变量交换两个整数)
  * [7. 判断一个数是不是 2 的 n 次方](#7-判断一个数是不是-2-的-n-次方)
  * [8.  判断一个数是不是 4 的 n 次方](#8--判断一个数是不是-4-的-n-次方)
